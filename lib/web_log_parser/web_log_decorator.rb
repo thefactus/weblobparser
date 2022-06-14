@@ -25,7 +25,9 @@ module WebLogParser
     attr_reader :log_data
 
     def collection_iterator_by(data_key, order, &block)
-      ordered_log_data = log_data.sort_by { |_k, data| data[data_key] }
+      ordered_log_data = log_data.sort_by do |_k, data|
+        data[data_key].is_a?(Set) ? data[data_key].to_a.size : data[data_key]
+      end
 
       return ordered_log_data.reverse.each(&block) if order == :descending
 
