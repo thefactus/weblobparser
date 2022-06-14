@@ -2,6 +2,6 @@
 
 RSpec.describe WebLogParser do
   it 'has a version number' do
-    expect(WebLogParser::VERSION).not_to be nil
+    expect(WebLogParser::VERSION).not_to be_nil
   end
 end
