@@ -29,7 +29,7 @@ module WebLogParser
 
     def validate_ipv4(ip)
       raise InvalidIpv4Error, "#{ip} is not a valid IPv4" unless ip.match?(IPV4_VALIDATION_REGEXP)
-      
+
       true
     end
   end
