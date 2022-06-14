@@ -14,9 +14,8 @@ module WebLogParser
         path, ip = line_parser.parse(line)
 
         log_data[path] ||= {}
-        log_data[path][:number_of_visits] ||= 0
-        log_data[path][:number_of_visits] += 1
-        (log_data[path][:ip_list] ||= Set.new) << ip
+        increment_number_of_visits(path, log_data)
+        add_ip(path, ip, log_data)
       end
 
       file.close
@@ -27,5 +26,14 @@ module WebLogParser
     private
 
     attr_reader :line_parser
+
+    def increment_number_of_visits(path, log_data)
+      log_data[path][:number_of_visits] ||= 0
+      log_data[path][:number_of_visits] += 1
+    end
+
+    def add_ip(path, ip, log_data)
+      (log_data[path][:ip_list] ||= Set.new) << ip
+    end
   end
 end
