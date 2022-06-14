@@ -6,10 +6,17 @@ module WebLogParser
       @log_data = log_data
     end
 
-    def paths_with_number_of_visits_descending
-      ordered_log_data_by(:number_of_visits, :descending).map do |path, data|
+    def paths_with_number_of_visits(order: :descending)
+      collection_iterator_by(:number_of_visits, order).map do |path, data|
         visits = data[:number_of_visits]
         "#{path} #{visits} visit#{visits > 1 ? 's' : ''}"
+      end
+    end
+
+    def paths_with_number_of_unique_visits(order: :descending)
+      collection_iterator_by(:ip_list, order).map do |path, data|
+        unique_visits = data[:ip_list].size
+        "#{path} #{unique_visits} unique view#{unique_visits > 1 ? 's' : ''}"
       end
     end
 
@@ -17,12 +24,12 @@ module WebLogParser
 
     attr_reader :log_data
 
-    def ordered_log_data_by(data_key, order)
+    def collection_iterator_by(data_key, order, &block)
       ordered_log_data = log_data.sort_by { |_k, data| data[data_key] }
 
-      return ordered_log_data.reverse if order == :descending
+      return ordered_log_data.reverse.each(&block) if order == :descending
 
-      ordered_log_data
+      ordered_log_data.each(&block)
     end
   end
 end
