@@ -10,6 +10,10 @@ RSpec.describe WebLogParser::FileParser do
         log_data = file_parser.parse(file_path)
 
         expect(log_data.keys).to include('/home', '/contact')
+        expect(log_data['/home'][:ip_list]).to include('1.1.1.1', '2.2.2.2')
+        expect(log_data['/home'][:number_of_visits]).to eq(2)
+        expect(log_data['/contact'][:ip_list]).to include('2.2.2.2')
+        expect(log_data['/contact'][:number_of_visits]).to eq(1)
       end
     end
   end
