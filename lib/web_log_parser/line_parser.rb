@@ -14,8 +14,15 @@ module WebLogParser
 
     def parse(line)
       path, ip = line.split
+      validate_ipv4(ip)
 
       [path, ip]
+    end
+
+    private
+
+    def validate_ipv4(ip)
+      raise InvalidIpv4Error, "#{ip} is a invalid IPv4" unless ip.match?(IPV4_VALIDATION_REGEXP)
     end
   end
 end
