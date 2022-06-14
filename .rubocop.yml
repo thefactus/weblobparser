@@ -150,3 +150,7 @@ RSpec/Rails/AvoidSetupHook: # new in 2.4
   Enabled: true
 RSpec/NestedGroups:
   Max: 5
+RSpec/MultipleExpectations:
+  Max: 5
+RSpec/ExampleLength:
+  Max: 10
