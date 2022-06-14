@@ -17,7 +17,7 @@ module WebLogParser
 
     def initialize(options = DEFAULT_OPTIONS, ip_validator = IpValidator)
       @options = options
-      @ip_validator = ip_validator.new({ip_validation: options[:ip_validation]})
+      @ip_validator = ip_validator.new({ ip_validation: options[:ip_validation] })
     end
 
     def parse(line)
