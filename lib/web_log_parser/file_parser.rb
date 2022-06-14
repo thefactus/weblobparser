@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 module WebLogParser
+  # Responsible for parsing web log files
   class FileParser
+    # Parse a file and returns relevant log data
+    #
+    # Example:
+    #   >> FileParser.new.parse('webserver.log')
+    #   => {"/home"=>{:number_of_visits=>2, :ip_list=>#<Set: {"1.1.1.1", "2.2.2.2"}>}, ...
+    #
+    # Arguments:
+    #   file_path: (String)
+
     def initialize
       @line_parser = LineParser.new
     end
