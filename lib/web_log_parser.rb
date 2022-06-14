@@ -4,6 +4,7 @@ require_relative 'web_log_parser/version'
 require_relative 'web_log_parser/line_parser'
 require_relative 'web_log_parser/file_parser'
 require_relative 'web_log_parser/ip_validator'
+require_relative 'web_log_parser/web_log_decorator'
 
 module WebLogParser
   class Error < StandardError; end
