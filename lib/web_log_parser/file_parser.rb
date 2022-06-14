@@ -17,16 +17,18 @@ module WebLogParser
     end
 
     def parse(file_path)
+      # TODO: move to a file validation class
+      raise FileNotFoundError, "The file #{file_path} is missing." unless File.file?(file_path)
+
+      unless File.extname(file_path) == '.log'
+        raise InvalidFileFormatError,
+              "The file #{file_path} has an invalid format"
+      end
+
       log_data = {}
       file = File.open(file_path)
 
-      file.each(chomp: true) do |line|
-        path, ip = line_parser.parse(line)
-
-        log_data[path] ||= {}
-        increment_number_of_visits(path, log_data)
-        add_ip(path, ip, log_data)
-      end
+      iterate_file_lines(file, log_data)
 
       file.close
 
@@ -36,6 +38,16 @@ module WebLogParser
     private
 
     attr_reader :line_parser
+
+    def iterate_file_lines(file, log_data)
+      file.each(chomp: true) do |line|
+        path, ip = line_parser.parse(line)
+
+        log_data[path] ||= {}
+        increment_number_of_visits(path, log_data)
+        add_ip(path, ip, log_data)
+      end
+    end
 
     def increment_number_of_visits(path, log_data)
       log_data[path][:number_of_visits] ||= 0

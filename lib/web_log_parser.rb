@@ -9,4 +9,6 @@ module WebLogParser
   class Error < StandardError; end
   class InvalidIpv4Error < StandardError; end
   class InvalidSimpleIpError < StandardError; end
+  class FileNotFoundError < StandardError; end
+  class InvalidFileFormatError < StandardError; end
 end
