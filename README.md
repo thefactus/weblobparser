@@ -1,6 +1,6 @@
 # WebLogParser
 
-WebLogParser is a flexible solution to parse data from web log files
+WebLogParser is a flexible solution to parse data from web log files.
 
 Rubycritic Score: 96.83 (lib folder)
 
@@ -25,6 +25,8 @@ You can also have access to the relevant data from the logs using `web_log.log_d
 ```
 
 ## Installation
+
+**Note:** Sorry, this gem is not available yet on Rubygems.
 
 Install the gem and add to the application's Gemfile by executing:
 
@@ -62,9 +64,21 @@ web_log.paths_with_number_of_visits(order: :ascending)
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+- This gem was developed following Test Driven Development from the beginning to the end.
+- The `LineParser` was the first class, followed by `FileParser`, `IpValidator`, `WebLogDecorator` and `WebLog`.
+- The WebLog class does act as value object, to make it easy to the developer use the parsed data.
+- Some classes have a top level documentation.
+- The `.rubocop.yml` is updated.
+- This project is ideally to be used as a gem, but you can use the `main.rb` file to run some tests.
+- By default the gem return the values in descending order, but that can be changed by adding the order param to the WebLog instance.
+- Also, by default the IP validation is simple (100.200.300.400 is valid), but by adding an ip_validation option to the LineParser instance, will allow you to validate as IPv4.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Improvements
+
+- Add many more tests
+- Test with more different files.
+- Add more class top level documentation.
+- Add output options (json, csv, html and more)
 
 ## Contributing
 
