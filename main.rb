@@ -20,4 +20,9 @@ puts web_log.paths_with_number_of_unique_visits
 
 puts '-----------------------------'
 
+puts 'You can also change the order by providing an order param which can be :ascending or :descending'
+puts web_log.paths_with_number_of_visits(order: :ascending)
+
+puts '-----------------------------'
+
 puts 'You can also have access to the relevant data from the logs using `web_log.log_data`'
