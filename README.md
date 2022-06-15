@@ -1,8 +1,28 @@
 # WebLogParser
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/web_log_parser`. To experiment with that code, run `bin/console` for an interactive prompt.
+WebLogParser is a flexible solution to parse data from web log files
 
-TODO: Delete this and the text above, and describe your gem
+Rubycritic Score: 96.83 (lib folder)
+
+Test coverage: 100%
+
+# Check results
+
+To quickly check the results, please use the 'main.rb' file.
+
+```bash
+$ ./main.rb webserver.log 
+
+> list of webpages with most page views ordered from most pages views to less page views
+/about/2 90 visits
+...
+-----------------------------
+> list of webpages with most unique page views also ordered
+/index 23 unique views
+...
+-----------------------------
+You can also have access to the relevant data from the logs using `web_log.log_data`
+```
 
 ## Installation
 
@@ -16,7 +36,29 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+Usage with defautl options.
+
+```ruby
+file_path = 'some_file_path.log'
+
+# creates a WebLog object in which you access the relevant log data
+web_log = WebLogParser.web_log_from_file(file_path)
+
+web_log.log_data
+# {"/home"=>{:number_of_visits=>2, :ip_list=>#<Set: {"1.1.1.1", "2.2.2.2"}>}, ...
+
+# by default returns an array with paths and its numbers of visits ordered from most pages visits to less page visits
+web_log.paths_with_number_of_visits
+# ['/home 2 visits', ...
+
+# by default returns an array with paths and its numbers of unique visits ordered the same way
+web_log.paths_with_number_of_unique_visits
+# ['/home 2 unique views', ...
+
+# you can change the order by providing a order param, in which is :descending by default
+web_log.paths_with_number_of_visits(order: :ascending)
+
+```
 
 ## Development
 
