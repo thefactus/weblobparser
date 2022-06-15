@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'set'
+
 module WebLogParser
   # Responsible for parsing web log files
   class FileParser
