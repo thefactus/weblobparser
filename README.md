@@ -66,7 +66,7 @@ web_log.paths_with_number_of_visits(order: :ascending)
 
 - This gem was developed following Test Driven Development from the beginning to the end.
 - The `LineParser` was the first class, followed by `FileParser`, `IpValidator`, `WebLogDecorator` and `WebLog`.
-- The WebLog class does act as value object, to make it easy to the developer use the parsed data.
+- The `WebLog` class does act as a value object, to make it easy for the developer use the parsed data. 
 - Some classes have a top level documentation.
 - The `.rubocop.yml` is updated.
 - This project is ideally to be used as a gem, but you can use the `main.rb` file to run some tests.
